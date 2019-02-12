@@ -36,7 +36,9 @@ function New-ScWebsiteNugetPackage
       [string] $Version,
       [Parameter(Mandatory=$true)]
       [string] $OutputFolder = ".",
-      [string] $NugetCommand = "nuget"
+      [string] $NugetCommand = "nuget",
+      [string] $Author = "Unic AG",
+      [string] $IconUrl = "https://www.unic.com/img/unic-logo.png"
   )
   Process
   {
@@ -44,7 +46,7 @@ function New-ScWebsiteNugetPackage
     $OutputFolder = Resolve-Path $OutputFolder
     $tempNuspec = "$($env:TEMP)\$([Guid]::NewGuid()).nuspec"
     cp "$PSScriptRoot\Website.Template.nuspec.template" $tempNuspec
-    & $nugetCommand "pack" $tempNuspec -p "ID=$PackageName" -p "Folder=$WebsiteFolder" -version $Version -OutputDirectory $OutputFolder
+    & $nugetCommand "pack" $tempNuspec -p "ID=$PackageName" -p "Folder=$WebsiteFolder" -p "AUTHOR=$Author" -p "ICONURL=$IconUrl" -version $Version -OutputDirectory $OutputFolder 
     rm $tempNuspec
     if($LASTEXITCODE -ne 0) {
         Write-Error "There was an error during creating website package $PackageName from file $ItemsFile."
