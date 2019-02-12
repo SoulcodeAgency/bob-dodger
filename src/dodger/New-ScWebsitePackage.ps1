@@ -14,6 +14,9 @@ The folder where all files should be published to.
 .PARAMETER TempPath
 A temp path which the build process should use.
 
+.PARAMETER VSVersion
+The Visual Studio Version number. Default is 14.0.
+
 .EXAMPLE
 New-ScWebsitePackage -MSBuildPath "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" -OutputFolder ./output
 
@@ -27,7 +30,8 @@ function New-ScWebsitePackage
         [Parameter(Mandatory=$true)]
         [string]$OutputFolder,
         [string]$TempPath = $env:TEMP,
-        [string]$SolutionPath
+        [string]$SolutionPath,
+        [string]$VSVersion = "14.0"
     )
     Process
     {
@@ -71,7 +75,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
             $SolutionPath = (Resolve-Path *.sln)
         }
         
-        & $MSBuildPath $SolutionPath /p:DeployOnBuild=true /p:VisualStudioVersion=14.0 /p:PublishProfile=$profilePath /p:Configuration=Release
+        & $MSBuildPath $SolutionPath /p:DeployOnBuild=true /p:VisualStudioVersion=$VSVersion /p:PublishProfile=$profilePath /p:Configuration=Release
         
         if ($LASTEXITCODE -ne 0)
         {
