@@ -20,6 +20,12 @@ The folder where the generated NuGet package will be written.
 .PARAMETER NugetCommand
 A path to nuget.exe or just "nuget" if NuGet.exe is in the path.
 
+.PARAMETER Author
+The Author of the package to generate. Defaults to "Unic AG".
+
+.PARAMETER IconUrl
+The IconUrl to be used for the package. Defaults to Unic AG Icon.
+
 .EXAMPLE
 New-ConfigNugetPackage -Source D:\projects\myProject -PackageName My.Config -Version 1.2.3 -OutputFolder D:\temp -NugetCommand .\tools\nuget.exe
 #>
@@ -38,9 +44,10 @@ Function New-ConfigNugetPackage
         [string]$Version,
         [Parameter(Mandatory=$true)]
         [string]$OutputFolder,
-        [Parameter(Mandatory=$true)]
-        [string]$NugetCommand
-        
+        [string]$NugetCommand = "nuget",
+        [string]$Author = "Unic AG",
+        [string]$IconUrl = "https://www.unic.com/img/unic-logo.png"
+          
 	)
     Process
     {
@@ -69,7 +76,9 @@ Function New-ConfigNugetPackage
         -PackageName $PackageName `
         -Version $Version `
         -OutputFolder $OutputFolder `
-        -NugetCommand $NugetCommand
+        -NugetCommand $NugetCommand `
+        -Author $Author `
+        -IconUrl $IconUrl
         
         rm $tempFolder -Recurse
     }

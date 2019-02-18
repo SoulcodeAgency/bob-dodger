@@ -20,6 +20,12 @@ The folder where the generated NuGet package will be written.
 .PARAMETER NugetCommand
 A path to nuget.exe or just "nuget" if NuGet.exe is in the path.
 
+.PARAMETER Author
+The Author of the package to generate. Defaults to "Unic AG".
+
+.PARAMETER IconUrl
+The IconUrl to be used for the package. Defaults to Unic AG Icon.
+
 .EXAMPLE
 New-ScWebsiteNugetPackage -WebsiteFolder .\website\output -PackageName My.Website -Version 1.2.3 -OutputFolder D:\temp -NugetCommand .\tools\nuget.exe
 
