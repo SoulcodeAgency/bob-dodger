@@ -51,8 +51,7 @@ Function New-ScSerializationNugetPackage
         [string]$Version,
         [Parameter(Mandatory=$true)]
         [string]$OutputFolder,
-        [Parameter(Mandatory=$true)]
-        [string]$NugetCommand,
+        [string]$NugetCommand = "nuget",
         [bool]$DistributedSerialization = $true,
         [string]$Author = "Unic AG",
         [string]$IconUrl = "https://www.unic.com/img/unic-logo.png"        
