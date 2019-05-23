@@ -15,7 +15,7 @@ if(-not (Test-Path "$PSScriptRoot\temp")) {
 
 Write-Host "install gitbook"
 Push-Location "$PSScriptRoot\temp"
-. {$object = npm install gitbook-cli} 2>&1; $object
+. {npm install gitbook-cli} 2>&1
 Pop-Location
 
 Write-Host "new-gitbook"
