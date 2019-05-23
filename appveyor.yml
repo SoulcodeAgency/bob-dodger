@@ -31,6 +31,7 @@ assembly_info:
 
 build_script:
   - cmd: nuget pack %Nuspec_File% -version "%GitVersion_NuGetVersionV2%" -OutputDirectory %Artefact_Output_Dir%
+  - cmd: npm install gitbook-cli
   - ps: |
       $ErrorActionPreference = 'Stop';
       npm version
