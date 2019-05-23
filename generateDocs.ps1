@@ -11,7 +11,14 @@ if(-not (Test-Path "$PSScriptRoot\temp")) {
     mkdir "$PSScriptRoot\temp"
 }
 
-Copy-Item .\package.json.default "$PSScriptRoot\temp\package.json"
+#Copy-Item .\package.json.default "$PSScriptRoot\temp\package.json"
+
+Write-Host "install gitbook"
+Push-Location "$PSScriptRoot\temp"
+. {$object = npm install gitbook-cli} 2>&1; $object
+Pop-Location
+
+Write-Host "new-gitbook"
 
 
 
