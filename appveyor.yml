@@ -31,6 +31,9 @@ assembly_info:
 
 build_script:
   - cmd: nuget pack %Nuspec_File% -version "%GitVersion_NuGetVersionV2%" -OutputDirectory %Artefact_Output_Dir%
+    - ps: |
+      $ErrorActionPreference = 'Stop';
+      .\generateDocs.ps1
 
 after_build:
   - cmd: appveyor PushArtifact %Artefact_Output_Dir%\%NuGet_PackageId%.%GitVersion_NuGetVersionV2%.nupkg
