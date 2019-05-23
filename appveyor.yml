@@ -33,7 +33,7 @@ build_script:
   - cmd: nuget pack %Nuspec_File% -version "%GitVersion_NuGetVersionV2%" -OutputDirectory %Artefact_Output_Dir%
   - ps: |
       $ErrorActionPreference = 'Stop';
-      npm -version
+      npm version
       .\generateDocs.ps1
 
 after_build:
